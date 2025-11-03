@@ -2,6 +2,7 @@ package mcjty.rftoolspower.modules.endergenic.blocks;
 
 import mcjty.lib.api.container.DefaultContainerProvider;
 import mcjty.lib.bindings.GuiValue;
+import mcjty.lib.bindings.Value;
 import mcjty.lib.blocks.LogicSlabBlock;
 import mcjty.lib.builder.BlockBuilder;
 import mcjty.lib.container.GenericContainer;
@@ -35,6 +36,11 @@ public class EnderMonitorTileEntity extends TickingTileEntity implements TickOrd
     private EnderMonitorMode mode = EnderMonitorMode.MODE_LOSTPEARL;
 
     private boolean needpulse = false;
+
+    @GuiValue
+    public static final Value<EnderMonitorTileEntity, String> VALUE_MODE =
+        Value.createEnum("mode", EnderMonitorMode.values(), EnderMonitorTileEntity::getMode, EnderMonitorTileEntity::setMode);
+
 
     @Cap(type = CapType.CONTAINER)
     private final LazyOptional<INamedContainerProvider> screenHandler = LazyOptional.of(() -> new DefaultContainerProvider<GenericContainer>("Ender Monitor")
